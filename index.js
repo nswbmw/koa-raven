@@ -1,5 +1,6 @@
 'use strict';
 
+var debug = require('debug')('koa-raven');
 var raven = require('raven');
 var Client = raven.Client;
 var parsers = raven.parsers;
@@ -22,9 +23,11 @@ module.exports = function sentry(app, client) {
       return;
     }
 
-    var kwargs = parsers.parseRequest(this.req);
+    var kwargs = parsers.parseRequest(this.request);
     kwargs.server_name = server_name;
     client.captureError(err, kwargs);
+    debug(err, kwargs);
+
     onerror.call(this, err);
   };
 };

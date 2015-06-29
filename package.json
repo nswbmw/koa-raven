@@ -1,7 +1,7 @@
 {
   "name": "koa-raven",
   "description": "raven middleware for koa.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,6 +13,7 @@
     "error"
   ],
   "dependencies": {
+    "debug": "^2.2.0",
     "raven": "^0.8.1"
   },
   "devDependencies": {
