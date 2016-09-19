@@ -1,33 +1,28 @@
-'use strict';
+const debug = require('debug')('koa-raven');
+const raven = require('raven');
 
-var debug = require('debug')('koa-raven');
-var raven = require('raven');
-var Client = raven.Client;
-var parsers = raven.parsers;
+const Client = raven.Client;
+const parsers = raven.parsers;
 
 module.exports = function sentry(app, client) {
   if (typeof client !== 'object') {
-    client = new Client(client || process.env.SENTRY_DSN, {level: process.env.SENTRY || 'error'});
+    client = new Client(client || process.env.SENTRY_DSN, { level: process.env.SENTRY || 'error' });
   }
 
   // catch global errors
-  client.patchGlobal(function() {
+  client.patchGlobal(() => {
     process.exit(1);
   });
 
-  var onerror = app.context.onerror;
-  var server_name = app.name || process.env.SENTRY_NAME;
-
-  app.context.onerror = function (err) {
+  app.context.onerror = function error(err, ctx) {
     if (!err) {
       return;
     }
 
-    var kwargs = parsers.parseRequest(this.request);
-    kwargs.server_name = server_name;
+    const kwargs = parsers.parseRequest(ctx.request);
     client.captureError(err, kwargs);
     debug(err, kwargs);
 
-    onerror.call(this, err);
+    super(err, ctx);
   };
 };
