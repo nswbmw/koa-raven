@@ -14,7 +14,7 @@
     "error"
   ],
   "dependencies": {
-    "debug": "^2.2.0",
+    "debug": "^2.2.0"
   },
   "peerDependencies": {
     "raven": "^0.12.1",
