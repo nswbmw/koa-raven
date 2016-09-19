@@ -2,7 +2,6 @@ const debug = require('debug')('koa-raven');
 const raven = require('raven');
 
 const Client = raven.Client;
-const parsers = raven.parsers;
 
 module.exports = function sentry(app, client) {
   if (typeof client !== 'object') {
@@ -14,15 +13,16 @@ module.exports = function sentry(app, client) {
     process.exit(1);
   });
 
-  app.context.onerror = function error(err, ctx) {
+  const onerror = app.context.onerror;
+
+  app.context.onerror = function error(err) {
     if (!err) {
       return;
     }
-
-    const kwargs = parsers.parseRequest(ctx.request);
+    const kwargs = raven.parsers.parseRequest(this.request);
     client.captureError(err, kwargs);
     debug(err, kwargs);
 
-    super(err, ctx);
+    onerror(this, err);
   };
 };
