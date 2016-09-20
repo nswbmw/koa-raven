@@ -4,7 +4,7 @@ raven middleware for koa v2.
 
 ### Install
 Install raven and koa2-raven
-```npm i rav koa2-raven --save```
+```npm i raven koa2-raven --save```
 
 ### Usage
 
