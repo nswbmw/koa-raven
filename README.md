@@ -3,16 +3,18 @@
 raven middleware for koa v2.
 
 ### Install
-```npm i koa2-raven --save```
+Install raven and koa2-raven
+```npm i rav koa2-raven --save```
 
 ### Usage
 
 ```javascript
 const Koa = require('koa');
+const raven = require('raven');
 const koaRaven = require('koa2-raven');
 
 const app = new Koa();
-koaRaven(app, 'http://18080b071d3d45ab972766405b2ef708:8d1091fbc44042f8a98f6e937ff46dba@localhost:9000/2');
+koaRaven(app, new raven.Client('http://sentry_dsn_here/2');
 
 app.use(function () {
   throw new Error('test');
