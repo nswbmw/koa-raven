@@ -7,7 +7,7 @@
 [travis-image]: https://img.shields.io/travis/scttcper/koa2-raven.svg
 [travis-url]: https://travis-ci.org/scttcper/koa2-raven
 
-raven middleware for koa v2 forked from koa-raven.
+raven middleware for koa v2 forked from koa-raven for sentry reporting
 
 ### Install
 Install raven and koa2-raven

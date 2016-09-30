@@ -8,9 +8,11 @@
   },
   "keywords": [
     "raven",
+    "raven-node",
     "sentry",
     "koa",
     "koa2",
+    "middleware",
     "error"
   ],
   "peerDependencies": {
