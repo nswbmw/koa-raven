@@ -1,10 +1,10 @@
 {
   "name": "koa2-raven",
-  "description": "raven middleware for koa.",
-  "version": "0.0.4",
+  "description": "raven middleware for koa 2",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/*.js"
   },
   "keywords": [
     "raven",
@@ -18,10 +18,15 @@
     "koa": "^2.0.0-alpha.7"
   },
   "devDependencies": {
-    "koa": "^2.0.0-alpha.7",
+    "chai": "^3.5.0",
+    "chai-spies": "^0.7.1",
     "eslint": "^3.6.1",
     "eslint-config-airbnb-base": "^8.0.0",
-    "eslint-plugin-import": "^2.0.0"
+    "eslint-plugin-import": "^2.0.0",
+    "koa": "^2.0.0-alpha.7",
+    "mocha": "^3.1.0",
+    "raven": "^0.12.1",
+    "supertest": "^2.0.0"
   },
   "license": "MIT",
   "repository": {
