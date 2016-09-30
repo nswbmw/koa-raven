@@ -4,7 +4,7 @@
 
 [npm-image]: https://img.shields.io/npm/v/koa2-raven.svg
 [npm-url]: https://npmjs.org/package/koa2-raven
-[travis-image]: https://img.shields.io/travis/scttcper/koa2-raven.svg
+[travis-image]: https://travis-ci.org/scttcper/koa2-raven.svg
 [travis-url]: https://travis-ci.org/scttcper/koa2-raven
 
 [raven-node](https://github.com/getsentry/raven-node) middleware for [koa](https://github.com/koajs/koa) v2 forked from koa-raven
