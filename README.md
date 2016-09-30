@@ -7,7 +7,8 @@
 [travis-image]: https://img.shields.io/travis/scttcper/koa2-raven.svg
 [travis-url]: https://travis-ci.org/scttcper/koa2-raven
 
-raven middleware for koa v2 forked from koa-raven for sentry reporting
+[raven-node](https://github.com/getsentry/raven-node) middleware for [koa](https://github.com/koajs/koa) v2 forked from koa-raven
+
 
 ### Install
 Install raven and koa2-raven
@@ -21,9 +22,10 @@ const raven = require('raven');
 const koaRaven = require('koa2-raven');
 
 const app = new Koa();
-koaRaven(app, new raven.Client('http://sentry_dsn_here/2'));
+koaRaven(app, new raven.Client('https://<key>:<secret>@sentry.io/<project>'));
 
 app.use(() => {
+  // This will log in sentry
   throw new Error('Terrible Error');
 });
 
