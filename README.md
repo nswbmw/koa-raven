@@ -1,4 +1,4 @@
-## koa2-raven
+# koa2-raven
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
 
