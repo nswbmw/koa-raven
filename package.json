@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/*.js"
+    "test": "mocha test/*.js",
+    "lint": "eslint index.js test examples; exit 0"
   },
   "keywords": [
     "raven",
@@ -16,19 +17,21 @@
     "error"
   ],
   "peerDependencies": {
-    "raven": "^0.12.1",
-    "koa": "^2.0.0-alpha.7"
+    "koa": "^2.0.0-alpha.7",
+    "raven": "^0.12.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-spies": "^0.7.1",
-    "eslint": "^3.7.0",
-    "eslint-config-airbnb-base": "^10.0.0",
-    "eslint-plugin-import": "^2.0.0",
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-import": "^2.2.0",
     "koa": "^2.0.0-alpha.7",
-    "mocha": "^3.1.0",
+    "koa-bodyparser": "^3.2.0",
+    "mocha": "^3.1.2",
+    "mocha-eslint": "^3.0.1",
     "raven": "^0.12.1",
-    "supertest": "^2.0.0"
+    "supertest": "^2.0.1"
   },
   "license": "MIT",
   "repository": {
