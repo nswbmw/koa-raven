@@ -1,27 +1,42 @@
 {
-  "name": "koa-raven",
-  "description": "raven middleware for koa.",
-  "version": "1.0.1",
+  "name": "koa2-raven",
+  "description": "raven middleware for koa 2",
+  "version": "2.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/*.js",
+    "lint": "eslint index.js test examples; exit 0"
   },
   "keywords": [
     "raven",
+    "raven-node",
     "sentry",
     "koa",
+    "koa2",
+    "middleware",
     "error"
   ],
-  "dependencies": {
-    "debug": "^2.2.0",
-    "raven": "^0.8.1"
+  "peerDependencies": {
+    "koa": "^2.0.0-alpha.7",
+    "raven": "^1.0.0-beta.0"
   },
   "devDependencies": {
-    "koa": "^0.21.0"
+    "chai": "^3.5.0",
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "koa": "^2.0.0-alpha.7",
+    "koa-bodyparser": "^3.2.0",
+    "koa-router": "^7.0.1",
+    "mocha": "^3.1.2",
+    "mocha-eslint": "^3.0.1",
+    "nock": "^9.0.2",
+    "raven": "^1.0.0-beta.0",
+    "supertest": "^2.0.1"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nswbmw/koa-raven.git"
+    "url": "https://github.com/scttcper/koa-raven.git"
   }
 }
