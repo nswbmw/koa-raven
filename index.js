@@ -1,33 +1,27 @@
 'use strict';
 
-var debug = require('debug')('koa-raven');
-var raven = require('raven');
-var Client = raven.Client;
-var parsers = raven.parsers;
+const assert = require('assert');
+const debug = require('debug')('koa-raven');
+const Raven = require('raven');
 
-module.exports = function sentry(app, client) {
-  if (typeof client !== 'object') {
-    client = new Client(client || process.env.SENTRY_DSN, {level: process.env.SENTRY || 'error'});
-  }
+module.exports = function (DSN, opts) {
+  assert('string' === typeof DSN, 'DSN required');
+  opts = opts || {};
+  opts.environment = opts.environment || process.env.NODE_ENV;
 
-  // catch global errors
-  client.patchGlobal(function() {
-    process.exit(1);
-  });
-
-  var onerror = app.context.onerror;
-  var server_name = app.name || process.env.SENTRY_NAME;
-
-  app.context.onerror = function (err) {
-    if (!err) {
-      return;
+  const raven = new Raven.Client(DSN, opts);
+  return function* koaRaven(next) {
+    this.raven = raven;
+    try {
+      yield next;
+    } catch (e) {
+      debug(e);
+      raven.captureException(e, {
+        extra: {
+          this: this
+        }
+      });
+      throw e;
     }
-
-    var kwargs = parsers.parseRequest(this.request);
-    kwargs.server_name = server_name;
-    client.captureError(err, kwargs);
-    debug(err, kwargs);
-
-    onerror.call(this, err);
   };
 };

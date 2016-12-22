@@ -1,6 +1,6 @@
 ## koa-raven
 
-raven middleware for koa.
+raven middleware for koa@1.
 
 ### Install
 
@@ -8,21 +8,45 @@ raven middleware for koa.
 
 ### Usage
 
+**raven(DSN[, opts])**
+
 ```
-var koa = require('koa');
-var raven = require('./');
+'use strict';
 
-var app = koa();
-app.name = 'example';
+const koa = require('koa');
+const raven = require('koa-raven');
 
-raven(app, 'http://18080b071d3d45ab972766405b2ef708:8d1091fbc44042f8a98f6e937ff46dba@localhost:9000/2');
+const app = koa();
 
+app.use(raven('xxx'));
 app.use(function *() {
   throw new Error('test');
 });
 
 app.listen(3000);
 ```
+
+or:
+
+```
+'use strict';
+
+const koa = require('koa');
+const raven = require('koa-raven');
+
+const app = koa();
+
+app.use(raven('xxx'))
+app.use(function* () {
+  this.raven.captureException(new Error('test'), { extra: { name: 'tom' } })
+})
+
+app.listen(3000);
+```
+
+### Options
+
+see: [https://docs.sentry.io/clients/node/config/](https://docs.sentry.io/clients/node/config/).
 
 ### License
 
