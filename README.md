@@ -1,47 +1,53 @@
 ## koa-raven
 
-raven middleware for koa@1.
+raven middleware for koa.
+
+**NB**: koa-raven@2 for koa@1.
 
 ### Install
 
-    npm i koa-raven --save
+```sh
+$ npm i koa-raven --save
+```
 
 ### Usage
 
 **raven(DSN[, opts])**
 
-```
-'use strict';
+```js
+const raven = require('koa-raven')
+const Koa = require('koa')
+const app = new Koa()
 
-const koa = require('koa');
-const raven = require('koa-raven');
+app.use(raven('DSN', opts))
 
-const app = koa();
+app.use((ctx) => {
+  throw new Error('test')
+})
 
-app.use(raven('xxx'));
-app.use(function *() {
-  throw new Error('test');
-});
-
-app.listen(3000);
+app.listen(3000)
 ```
 
 or:
 
 ```
-'use strict';
+const raven = require('koa-raven')
+const Koa = require('koa')
+const app = new Koa()
 
-const koa = require('koa');
-const raven = require('koa-raven');
+app.use(raven('DSN', opts))
 
-const app = koa();
-
-app.use(raven('xxx'))
-app.use(function* () {
-  this.raven.captureException(new Error('test'), { extra: { name: 'tom' } })
+app.use((ctx) => {
+  try {
+    throw new Error('test')
+  } catch (e) {
+    ctx.raven.captureException(e, { extra: { name: 'tom' } })
+    ctx.status = 500
+    ctx.body = e.stack
+  }
 })
 
-app.listen(3000);
+app.listen(3000)
 ```
 
 ### Options

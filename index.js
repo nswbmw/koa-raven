@@ -1,27 +1,23 @@
-'use strict';
-
-const assert = require('assert');
-const debug = require('debug')('koa-raven');
-const Raven = require('raven');
+const assert = require('assert')
+const debug = require('debug')('koa-raven')
+const Raven = require('raven')
 
 module.exports = function (DSN, opts) {
-  assert('string' === typeof DSN, 'DSN required');
-  opts = opts || {};
-  opts.environment = opts.environment || process.env.NODE_ENV;
+  assert(typeof DSN === 'string', 'DSN required')
+  opts = opts || {}
+  opts.env = opts.env || process.env.NODE_ENV
 
-  const raven = new Raven.Client(DSN, opts);
-  return function* koaRaven(next) {
-    this.raven = raven;
+  const raven = Raven.config(DSN, opts).install()
+  return async function koaRaven (ctx, next) {
+    ctx.raven = raven
     try {
-      yield next;
+      await next()
     } catch (e) {
-      debug(e);
+      debug(e)
       raven.captureException(e, {
-        extra: {
-          this: this
-        }
-      });
-      throw e;
+        extra: { ctx: ctx.request }
+      })
+      throw e
     }
-  };
-};
+  }
+}
