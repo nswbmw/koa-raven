@@ -30,7 +30,7 @@ app.listen(3000)
 
 or:
 
-```
+```js
 const raven = require('koa-raven')
 const Koa = require('koa')
 const app = new Koa()
