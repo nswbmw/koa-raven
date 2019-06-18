@@ -1,3 +1,7 @@
+## DEPRECATION NOTICE
+
+Sentry now provides official Koa integration: <https://sentry.io/for/koa/>.
+
 ## koa-raven
 
 raven middleware for koa.
