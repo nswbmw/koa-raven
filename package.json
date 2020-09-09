@@ -1,7 +1,7 @@
 {
   "name": "koa-raven",
   "description": "raven middleware for koa@2.",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

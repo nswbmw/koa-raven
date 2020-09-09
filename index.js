@@ -15,7 +15,7 @@ module.exports = function (DSN, opts) {
     } catch (e) {
       debug(e)
       raven.captureException(e, {
-        req: ctx.req
+        request: ctx.request
       })
       throw e
     }

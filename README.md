@@ -1,4 +1,4 @@
-## DEPRECATION NOTICE
+## NOTICE
 
 Sentry now provides official Koa integration: <https://sentry.io/for/koa/>.
 
