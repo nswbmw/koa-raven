@@ -6,8 +6,6 @@ Sentry now provides official Koa integration: <https://sentry.io/for/koa/>.
 
 raven middleware for koa.
 
-**NB**: koa-raven@2 for koa@1.
-
 ### Install
 
 ```sh
